@@ -1,0 +1,46 @@
+$bg: #000;
+$fg: #111;
+$effect: #fff;
+$shadow: #00b3ff;
+
+* {
+  margin: 0;
+  padding: 0;
+  // box-sizing: border-box;
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $bg;
+  }
+}
+h1 {
+  color: $fg;
+  font-size: 16em;
+  span {
+    display: table-cell;
+    animation: animate 2s linear infinite;
+    @for $i from 1 through 7 {
+      &:nth-child(#{$i}) {
+        animation-delay: (($i)-1) * 0.25s;
+      }
+    }
+  }
+}
+@keyframes animate {
+  0%,
+  100% {
+    color: $effect;
+    filter: blur(2px);
+    text-shadow: 0 0 10px $shadow, 0 0 20px $shadow, 0 0 40px $shadow, 0 0 80px $shadow,
+      0 0 120px $shadow, 0 0 200px $shadow, 0 0 300px $shadow, 0 0 400px $shadow;
+  }
+
+  5%,
+  95% {
+    color: $fg;
+    filter: blur(0px);
+    text-shadow: none;
+  }
+}
