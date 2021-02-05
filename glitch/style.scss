@@ -1,0 +1,77 @@
+$bg: #222;
+$fg: #fff;
+$piros: rgba(255, 0, 0, 0.75);
+$zold: rgba(0, 255, 0, 0.75);
+$kek: rgba(0, 0, 255, 0.75);
+
+body {
+  background-color: $bg;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: $fg;
+  font-family: sans-serif;
+}
+
+.glitch {
+  font-size: 7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  position: relative;
+  text-shadow: 0.05em 0 0 $piros, -0.025em -0.05em 0 $zold, 0.025em 0.05em 0 $kek;
+  animation: animate 0.75s infinite;
+  span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    &:first-child {
+      animation: animate 650ms infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      transform: translate(-0.025em, -0.0125em);
+      opacity: 0.8;
+    }
+    &:last-child {
+      animation: animate 375ms infinite;
+      clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
+      transform: translate(0.0125em, 0.025em);
+      opacity: 0.8;
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    text-shadow: 0.05em 0 0 $piros, -0.05em -0.025em 0 $zold, -0.025em 0.05em 0 $kek;
+  }
+  14% {
+    text-shadow: 0.05em 0 0 $piros, -0.05em -0.025em 0 $zold, -0.025em 0.05em 0 $kek;
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 $piros, 0.025em 0.025em 0 $zold, -0.05em -0.05em 0 $kek;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 $piros, 0.025em 0.025em 0 $zold, -0.05em -0.05em 0 $kek;
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 $piros, 0.05em 0 0 $zold, 0 -0.05em 0 $kek;
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 $piros, 0.05em 0 0 $zold, 0 -0.05em 0 $kek;
+  }
+  100% {
+    text-shadow: -0.025em 0 0 $piros, -0.025em -0.025em 0 $zold, -0.025em -0.05em 0 $kek;
+  }
+}
+
+//. Ha ki van kapcsolva az animáció, akkor "lebutítja" a dolgokat
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
